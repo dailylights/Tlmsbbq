@@ -1,0 +1,122 @@
+	public function post(){
+
+		 if(IS_POST){
+
+
+         $realname=htmlspecialchars(trim(X("post.realname")));
+
+         $forum = intval(X("post.forum"));
+
+         $towho=htmlspecialchars(trim(X("post.towho")));
+
+         $xb = intval(X("post.xb"));
+
+         $content = htmlspecialchars(X('post.content'));
+
+         $lastdate = date("Y-m-d H:i");
+
+         $biaobai=1;
+
+
+
+         $Thread = S("Thread");
+
+          $Thread->insert(array(
+
+                
+
+				'niming' =>$realname,
+
+				'fid'=>$forum,
+
+				'title'=>$towho,
+
+				'content'=>$content,
+
+				'lastdate'=>$lastdate,
+
+				'biaobai'=>$biaobai,
+
+				'pid'=>1,
+
+				'xb'=>$xb,
+
+
+
+            ));
+             $this->tid = $tid = $Thread->id();
+
+
+
+           $Post = S("Post");
+
+           $Post->insert(array(
+                'tid'=>$tid,
+				'content' => $realname,
+				'fid'=>$forum,
+				'isthread'=>1,
+				'uid'=>1,
+
+            ));
+            $pid = $Post->id();
+
+            $Thread->update(['pid'=>$pid],['tid'=>$tid]);
+
+
+            }
+
+
+
+
+           
+
+
+
+            else{
+
+
+
+    
+
+
+
+            	header("location: ". WWW.URL('index',''));
+
+            }
+
+
+
+	}
+
+
+
+	public function wall(){
+        $Thread = M("Thread");
+        $fid=X('get.fid');
+        $this->v("fid",$fid);
+        $desc = ['tid' => 'DESC'];
+        $thread_list = $Thread->get_thread_list(1,10,$desc);
+        $this->v("list",$thread_list);
+    
+	    $this->display('index_wall');
+
+
+
+
+     
+
+    }
+    public function wall1(){
+       
+        $fid=X('get.fid');
+        $this->v("fid",$fid);
+    
+        $this->display('index_wall1');
+
+
+
+
+     
+
+    }
+

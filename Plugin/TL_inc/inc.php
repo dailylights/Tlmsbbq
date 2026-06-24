@@ -1,0 +1,2 @@
+<?php !defined('HY_PATH') && exit('HY_PATH not defined.'); ?>
+{"1":"\u601d\u5ff5\u7684\u4eba \u60f3\u8bf4\u7684\u8bdd\u8fd9\u91cc\u544a\u8bc9Ta","2":"\u6211\u8981\u8868\u767d","3":"Powered by \u4e0d\u590f\u3001\u6545\u4eba\u3001\u963f\u65bc","4":"1409601547","5":"https:\/\/p3.pstatp.com\/large\/46ff000166d8f43545b6","name":"TL_inc","gn":"op"}
