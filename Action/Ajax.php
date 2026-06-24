@@ -132,7 +132,7 @@ class Ajax extends HYBBS {
         $Fileinfo->update(['downs[+]'=>1],['fileid'=>$fileinfo_data['fileid']]);
 
         //{hook a_ajax_downfile_13}
-        $timefmt = date('D, d M Y H:i:s', $_SERVER['time']).' GMT';
+        $timefmt = date('D, d M Y H:i:s', NOW_TIME).' GMT';
         header('Date: '.$timefmt);
         header('Last-Modified: '.$timefmt);
         header('Expires: '.$timefmt);

@@ -265,7 +265,7 @@ class Friend extends HYBBS {
             $user = $User->uid_to_user($uid);
             $avatar = $this->avatar($user);
             //{hook a_friend_user_info_5}
-            return $this->json(array('error'=>true,'info'=>array('user'=>$user,'avatar'=>$avatar)));;
+            return $this->json(array('error'=>true,'info'=>array('user'=>$user,'avatar'=>$avatar)));
         }
     }
     //{hook a_friend_fun}

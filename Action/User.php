@@ -55,18 +55,18 @@ public function Pbbq(){
         $name1 = htmlspecialchars(trim(X("post.name1"))); 
         $btext = htmlspecialchars(trim(X("post.btext")));
         $bontext = htmlspecialchars(trim(X("post.bontext")));
-        $f1 = htmlspecialchars(trim(X("post.f1")));
-        $f2 = htmlspecialchars(trim(X("post.f2")));
+        $post_f1 = htmlspecialchars(trim(X("post.f1")));
+        $post_f2 = htmlspecialchars(trim(X("post.f2")));
         $qq = htmlspecialchars(trim(X("post.qq")));
         $bimg = htmlspecialchars(trim(X("post.bimg")));
         $lg = htmlspecialchars(trim(X("post.lg")));
 
         $Thread = S("forum");
-        $f1= $Thread-> get("*",array("forumg"=>NOW_UID));
-            if($f1)
-            {       
+        $user_forum = $Thread->get("*",array("forumg"=>NOW_UID));
+        if($user_forum)
+        {       
             return $this->message("您已创建过表白墙！");
-            } 
+        } 
         $f= $Thread-> get(array("id","only"),array("name"=>$name));
         $n2= $Thread-> get(array("id","only"),array("name2"=>$name1));
         if($f and $f['only']==1)
@@ -78,7 +78,7 @@ public function Pbbq(){
         if(empty($name) or empty($name1))
             return $this->message("内容不能为空");
         if(mb_strlen($name) > 30 or mb_strlen($name1) > 30)
-                return $this->message("名称别名不可大于20个字符");
+                return $this->message("名称别名不可大于30个字符");
         if(is_numeric($name1))
             return $this->message("别名不能为数字！");
         
@@ -89,8 +89,8 @@ public function Pbbq(){
                 'name2'=>$name1,
                 'btext'=>$btext,
                 'bontext'=>$bontext,
-                'f1'=>$f1,
-                'f2'=>$f2,
+                'f1'=>$post_f1,
+                'f2'=>$post_f2,
                 'qq'=>$qq,
                 'bimg'=>$bimg,
                 'lg'=>$lg,

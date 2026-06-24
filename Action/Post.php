@@ -46,7 +46,7 @@ class Post extends HYBBS {
 			return $this->json(array('error'=>false,'info'=>'内容不能为空'));
 		//{hook a_post_post_3}
 		$content = X('post.content');
-		if (get_magic_quotes_gpc())
+		if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
   			$content = stripslashes($content);
 		
 		if(NOW_GID != C("ADMIN_GROUP")){
@@ -235,7 +235,7 @@ class Post extends HYBBS {
 			$title = preg_replace( '/\p{Thai}/u' , '' , $title );
 
             $content = X('post.content');
-            if (get_magic_quotes_gpc())
+            if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
   				$content = stripslashes($content);
             
 			if(NOW_GID != C("ADMIN_GROUP")){
@@ -652,7 +652,7 @@ class Post extends HYBBS {
 			
 			$d['file_path'] = WWW . "upload/userfile/".NOW_UID."/".$info['photo']['savename'];
 			$file_size = $info['photo']['size'] / 1024; //得到kb单位
-			if($file_size < 1 && $filesize > 0) //如果值为 0.x 则算作 1kb
+			if($file_size < 1 && $file_size > 0) //如果值为 0.x 则算作 1kb
 				$file_size = 1;
 			M("User")->update_int(NOW_UID,'file_size','+',$file_size);
 
@@ -672,7 +672,7 @@ class Post extends HYBBS {
 			//{hook a_post_edit_2}
 			$id = intval(X("post.id"));
 			$content = X('post.content');
-			if (get_magic_quotes_gpc())
+			if (function_exists('get_magic_quotes_gpc') && get_magic_quotes_gpc())
   				$content = stripslashes($content);
 			
 			if(NOW_GID != C("ADMIN_GROUP")){

@@ -378,12 +378,11 @@ class Admin extends HYBBS {
                 
                 S("Chat")->delete(array('OR'=>array('uid1'=>$uid,'uid2'=>$uid)));
                 S("Chat_count")->delete(array('uid'=>$uid));
-                S("Chat_pm")->delete(array('OR'=>array('uid1'=>$uid,'uid2'=>$uid)));
                 S("File")->delete(array('uid'=>$uid));
                 S("Filegold")->delete(array('uid'=>$uid));
                 S("Fileinfo")->delete(array('uid'=>$uid));
                 S("Friend")->delete(array('OR'=>array('uid1'=>$uid,'uid2'=>$uid)));
-                S("Ol")->delete(array('uid'=>$uid));
+                S("Online")->delete(array('uid'=>$uid));
                 S("Threadgold")->delete(array('uid'=>$uid));
                 S("Vote_post")->delete(array('uid'=>$uid));
                 S("Vote_thread")->delete(array('uid'=>$uid));
@@ -398,12 +397,11 @@ class Admin extends HYBBS {
                         $Post = S("Post");
                         $Chat = S("Chat");
                         $Chat_count = S("Chat_count");
-                        $Chat_pm = S("Chat_pm");
                         $File = S("File");
                         $Filegold = S("Filegold");
                         $Fileinfo = S("Fileinfo");
                         $Friend = S("Friend");
-                        $Ol = S("Ol");
+                        $Online = S("Online");
                         $Threadgold = S("Threadgold");
                         $Vote_post = S("Vote_post");
                         $Vote_thread = S("Vote_thread");
@@ -413,12 +411,11 @@ class Admin extends HYBBS {
                             $Post->delete(array('uid'=>$v));
                             $Chat->delete(array('OR'=>array('uid1'=>$v,'uid2'=>$v)));
                             $Chat_count->delete(array('uid'=>$v));
-                            $Chat_pm->delete(array('OR'=>array('uid1'=>$v,'uid2'=>$v)));
                             $File->delete(array('uid'=>$v));
                             $Filegold->delete(array('uid'=>$v));
                             $Fileinfo->delete(array('uid'=>$v));
                             $Friend->delete(array('OR'=>array('uid1'=>$v,'uid2'=>$v)));
-                            $Ol->delete(array('uid'=>$v));
+                            $Online->delete(array('uid'=>$v));
                             $Threadgold->delete(array('uid'=>$v));
                             $Vote_post->delete(array('uid'=>$v));
                             $Vote_thread->delete(array('uid'=>$v));
@@ -746,14 +743,14 @@ class Admin extends HYBBS {
             if(is_dir(VIEW_PATH . $name2))
                 return $this->json(array('error'=>false,'info'=>"英文名已经存在\r\n如果你想覆盖,请手动到目录中删除".$name2));
             mkdir(VIEW_PATH . $name2);
-            file_put_contents(VIEW_PATH . $name2 . '/conf.php',"<?php
-return array(
-    'name' => '{$name}',
-    'user' => '{$user}',
-    'mess' => '{$mess}',
-    'code' => '{$code}',
-    'version' => '1.0',
-);");
+            $conf_data = array(
+                'name' => $name,
+                'user' => $user,
+                'mess' => $mess,
+                'code' => $code,
+                'version' => '1.0',
+            );
+            file_put_contents(VIEW_PATH . $name2 . '/conf.php',"<?php\nreturn ".var_export($conf_data, true).";\n");
 
 
             return $this->json(array('error'=>true,'info'=>'建立成功'));
@@ -1350,14 +1347,14 @@ return array(
                 if(is_dir(PLUGIN_PATH . $name2))
                     return $this->mess("已存在相同英文名的插件");
                 mkdir(PLUGIN_PATH . $name2);
-                file_put_contents(PLUGIN_PATH . $name2 . '/conf.php',"<?php
-return array(
-    'name' => '{$name}',
-    'user' => '{$user}',
-    'icon' => '{$icon}',
-    'mess' => '{$mess}',
-    'version' => '1.0',
-);");
+                $conf_data = array(
+                    'name' => $name,
+                    'user' => $user,
+                    'icon' => $icon,
+                    'mess' => $mess,
+                    'version' => '1.0',
+                );
+                file_put_contents(PLUGIN_PATH . $name2 . '/conf.php',"<?php\nreturn ".var_export($conf_data, true).";\n");
                 if($inc){
                     put_tmp_file(PLUGIN_PATH . $name2 . '/inc.php','{}');
                     file_put_contents(PLUGIN_PATH . $name2 . '/conf.html','在这里输入你的HTML表单');

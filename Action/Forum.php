@@ -78,7 +78,7 @@ class Forum extends HYBBS {
 
         if(empty($data) || DEBUG){
             //{hook a_forum_empty_4}
-            
+            if(!isset($Thread)) $Thread = M("Thread");
             $data = $Thread->get_forum_thread_list($fid,$pageid,$this->conf['forumlist'],$desc);
             $Thread->format($data);
             foreach ($data as $key => $value) {
@@ -95,6 +95,7 @@ class Forum extends HYBBS {
         if(empty($top_data) || DEBUG){
             //{hook a_forum_empty_55}
             //全局置顶
+            if(!isset($Thread)) $Thread = M("Thread");
             $top_data = $Thread->get_top_thread();
             //格式数据显示
             $Thread->format($top_data);
@@ -110,6 +111,7 @@ class Forum extends HYBBS {
         if(empty($forum_top_data) || DEBUG){
             //{hook a_forum_empty_66}
             //全局置顶
+            if(!isset($Thread)) $Thread = M("Thread");
             $forum_top_data = $Thread->get_forum_top_thread($fid);
             //格式数据显示
             $Thread->format($forum_top_data);

@@ -11,13 +11,13 @@ function X($name){
         if($data[0]=='get'){
             return isset($_GET[$v])?$_GET[$v]:'';
         }elseif($data['0']=='post'){
-            return isset($_POST[$v])?$_POST[$v]:'';;
+            return isset($_POST[$v])?$_POST[$v]:'';
         }elseif($data['0']=='session'){
-            return isset($_SESSION[$v])?$_SESSION[$v]:'';;
+            return isset($_SESSION[$v])?$_SESSION[$v]:'';
         }elseif($data['0']=='cookie'){
-            return isset($_COOKIE[$v])?$_COOKIE[$v]:'';;
+            return isset($_COOKIE[$v])?$_COOKIE[$v]:'';
         }elseif($data['0']=='server'){
-            return isset($_SERVER[$v])?$_SERVER[$v]:'';;
+            return isset($_SERVER[$v])?$_SERVER[$v]:'';
         }
     }
     return '';

@@ -139,7 +139,7 @@ class Search extends HYBBS {
 
         $tmp_avatar = 'public/images/user.gif';
         foreach ($data as $i => &$v) {
-            $v['title'] = preg_replace("/({$key})/is",'<font color="red">$1</font>',$v['title']);
+            $v['title'] = preg_replace("/(".preg_quote($key, '/').")/is",'<font color="red">$1</font>',$v['title']);
             $tmp = strip_tags($v['content']);
 
             if((empty($tmp) || stripos($tmp, $key) === false) && stripos($v['title'], $key) === false){
@@ -164,7 +164,7 @@ class Search extends HYBBS {
             }
             
             
-            $v['content'] = preg_replace("/({$key})/is",'<font color="red">$1</font>',$v['content']);
+            $v['content'] = preg_replace("/(".preg_quote($key, '/').")/is",'<font color="red">$1</font>',$v['content']);
             
             
         }
