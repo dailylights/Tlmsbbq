@@ -1,0 +1,116 @@
+{include h}
+<style>
+.name{
+	background-color: rgba(238, 238, 238, 0.65);
+    margin-top: 100px;
+}
+
+</style>
+<section class="body" id="index_body" style="">
+{include forum_header}
+<div class="jumbotron" >
+		    
+		    <p>思念的人 想说的话 这里告诉ta</p>
+		    <p><a class="btn btn-primary btn-lg" role="button" href="{#WWW}wall/call.php">我要表白</a></p>
+	
+	    </div>
+	<!--{hook t_m_forum_index_1}-->
+	<?php 
+	$forum_group = M('Forum_group')->read_all_cache();
+	?>
+	<!--{hook t_top_box_m}-->
+	<div id="" class="wrap-box forum" style="margin-bottom:10px">
+		<?php $has_none = true; ?>
+		<ul>
+			{foreach $forum as $key => $v}
+		        <?php $has = false; ?>
+		        {foreach $forum_group as $vv}
+		            
+		            {if $v['fgid'] == $vv['id']}
+		                <?php $has = true;break; ?>
+		            {/if}
+		            
+		        {/foreach}
+		        {if !$has}
+		        <?php $has_none = false; ?>
+				<li style="background: url({$v.lg});"> 
+					<a iframe="true"   href="<?php echo WWW.URL('forum','',$v['name2']); ?>">
+		            	<!-- <i> 
+		            		<img src="{#WWW}upload/forum{$key}.png" onerror="this.src='{#WWW}upload/de.png'" align="left" alt="">
+			            </i>  -->
+			            <strong class="name">{$v.name}</strong>
+			            
+		            </a>
+	            </li>
+	            {/if}
+		    {/foreach}
+        </ul>
+        {if !$has_none}<script type="text/javascript">$('#none-forum').show()</script>{/if}
+	</div>
+	<!--{hook t_m_forum_index_2}-->
+	{foreach $forum_group as $v}
+	<div id="" class="wrap-box forum" style="margin-bottom:10px">
+		<h3>{$v.name}</h3>
+		<ul>
+			{foreach $forum as $key => $vv}
+			{if $vv['fgid'] == $v['id']}
+			<li> 
+				<a iframe="true" ajax="true"  href="<?php echo WWW.URL('forum','',EXP.$vv['id']); ?>">
+		            <strong>{$vv.name}</strong>
+					<span class="banzhu" >
+		            			<i class="iconfont icon-banzhu">版务: </i>
+		            			{if $vv['forumg']}
+		            			<?php 
+		            				$User = M("User");
+		            				echo $User->id_to_user($vv['forumg']);
+		            			?>
+		            			{else}
+		            			位置空缺中
+		            			{/if}
+								<i class="iconfont icon-zhuti"> 主题: </i>{$vv.threads}
+		            		</span>
+	            	<!--{if $vv['html']}	
+		            	<span>{$vv.html}</span>
+		            {else}
+		            	<span>想要改变此段文字，请在后台增加板块描述。</span>
+		            {/if}
+					<strong style="color: {$vv.background};">{$vv.threads}</strong>主题数和文字颜色-->
+					<div class="bbb">
+	            		<img class="fff" src="{#WWW}upload/forum{$key}.png" onerror="this.src='{#WWW}upload/de.png'" align="left" alt="">
+						</div>
+	            </a>
+            </li>
+            {/if}
+            {/foreach}
+        </ul>
+	</div>
+	{/foreach}
+	<!--{hook t_m_forum_index_5}-->
+  <script type="text/javascript">
+          $(".FormControl").change(function(){
+              window.location.href = $(this).val();
+          })
+          </script>
+          <script type="text/javascript">
+    $(function(){
+            $(window).scroll(function(){
+                
+                if(this.scrollY > 100  ){
+                    $(".hy-header").css('background','#30D0DF');
+                    $(".hy-header").addClass('header_shadow');
+                    $(".hy-header-title,.hy-header .icon").css("cssText","color: #fff !important");
+                }else{
+                    $(".hy-header").css('background','rgba(0, 0, 0, 0)');
+                    $(".hy-header").removeClass('header_shadow');
+                    $(".hy-header-title,.hy-header .icon").css("cssText","color: #fff");
+                        
+                }
+                
+            });
+            
+
+        })
+    
+</script>
+</section>
+{include f}

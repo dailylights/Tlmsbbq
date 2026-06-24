@@ -1,0 +1,49 @@
+<style>
+.panel-heading-boy {
+    padding: 10px 15px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: #585758;
+    color: #FFF;
+}
+</style>
+<a class="biaobaiurl" href="{php echo WWW.URL('thread','',$v['tid']);}" ajax="true" pos="right">
+   <div class="panel panel-info">
+	    	<div class="panel-heading-boy"><strong>TO ：{$v.title}</strong>
+	        <div class="shijian">{$v.lastdate}</div>
+	    </div>
+		
+	    <div class="panel-body">
+	      	<p style="    color: rgba(88, 87, 88, 0.71);">{$v.content}</p>
+			<!-- 表白墙点赞 -->
+			<!-- 表白墙点赞 -->
+	        <div class="shijian2">FROM ：{$v.niming}</div>
+	    </div>
+		<div class="t-ul">
+			<ul>
+				{hook t_m_thread_list_7}
+				<li class="left">
+		        <a class="xihuan" onclick="tp('thread1',{$v.tid},this)">
+			    <i class="iconfont">&#xe699;</i>
+			    <span>{$v.goods}</span></a></li>
+				
+				<li class="left">
+				<a href="{php echo WWW.URL('thread','',$v['tid']);}"  >
+					<i class="iconfont">&#xe60f;</i>
+					 <span>{$v.posts}</span></a>
+				</li>
+				<li class="right">
+					<i class="iconfont"></i>
+					{if $forum[$v['fid']]['fid'] != -1}
+			<!--{hook t_m_thread_list_5}-->
+	            <a  class="tla1">{php echo forum($forum,$forum[$v['fid']]['fid'],'name');}</a>
+	        
+	        <!--{hook t_m_thread_list_6}-->
+	        {/if}
+	        <!--{hook t_m_thread_list_7}-->
+	            <a  href="{php echo WWW.URL('forum','',$v['fid'])}" class="tla1">#{php echo forum($forum,$v['fid'],'name');}#</a></li>
+			</ul>
+		</div>	 
+	    </div>
+		</a>

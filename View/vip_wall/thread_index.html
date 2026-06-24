@@ -1,0 +1,200 @@
+﻿<head>
+{include h}
+{include thread_header}
+<script type="text/javascript">
+var  flag = window.sessionStorage.getItem("flag");
+    console.log(flag);
+    if(!flag){
+       settimeout(fn,1000); 
+       window.localStorage.setItem("flag","true");
+    }
+</script>
+<!--{hook t_m_thread_index_1}-->
+<section class="body" id="thread-body">
+<div style="margin-top: 60px;">
+<!--{hook t_m_thread_index_2}-->
+	
+	{if $thread_data['biaobai']!=1}
+	<div class="hy-box thread-index" style="margin-bottom: 0;padding-bottom: 0;padding-top: 0;">
+	<!--{hook t_m_thread_index_3}-->
+		<h2>{$thread_data.title}{if $thread_data['state']}<span title="{$_LANG['禁止回复']}" style="    color: brown;"> - {$_LANG['已锁定']}</span>{/if}</h2>
+		<!--{hook t_m_thread_index_4}-->
+	     <p class="cl">
+		 <a href="{php echo WWW.URL('my',$thread_data['user']);}">
+				<img src="{#WWW}{$thread_data.avatar.b}" class="avatar">
+			</a>
+			<a href="{php echo WWW.URL('my',$thread_data['user']);}" class="user">{$thread_data.user}
+			</a>
+		</p>
+			<em class="">{php echo date("Y-m-d",($thread_data['atime']));}</em>
+			<em class="louzhu">楼主</em>
+		<!--{hook t_m_thread_index_5}-->
+	</div>
+	<!--{hook t_m_thread_index_6}-->
+	<div class="hy-box thread-cen">
+	<!--{hook t_m_thread_content_top}-->
+		{if $thread_data['show'] && $thread_data['gold_show']}
+		{$post_data.content}
+		{else}
+		{if $thread_data['gold_show']}
+          <blockquote style="color: #B75C5C;font-weight: bold;">
+          {$_LANG['内容隐藏提示']}
+          </blockquote>
+          {else}
+          <blockquote style="color: #B75C5C;font-weight: bold;">
+          {$_LANG['内容需要付费']} <a href="javascript:void(0);" onclick="buy_thread({$thread_data['id']},{$thread_data['gold']})">({$_LANG['点击购买']})</a> {$_LANG['售价']}：{$thread_data['gold']} {$_LANG['金币']}
+          </blockquote>
+          {/if}
+        {/if}
+	</div> 
+    <!--{hook t_m_thread_content_bottom}-->
+	<!-- {if $thread_data['files']} -->
+	<!-- <!--{hook t_m_thread_index_7}-->
+      <!-- 附件 -->
+	<!-- {/if} -->
+	<!--{hook t_m_thread_index_12}-->
+	
+	
+	<div class="neir" style="background: #fff;width:100%;padding:10px;height: 50px;margin: -10px auto 10px auto;border-bottom: 1px solid rgb(227, 227, 227) !important;">
+	<div class="r post-div" style="width:33.3333%;text-align: center;">
+		<a onclick="tp('thread2',{$thread_data.tid},this)">
+			<i class="iconfont">&#xe605;</i>
+			<!--{$_LANG['踩']}-->不喜欢 <span>{$thread_data['nos']}</span>
+		</a>
+	</div>
+	<div class="r post-div"  style="width:33.3333%;text-align: center;">
+		<a onclick="tp('thread1',{$thread_data.tid},this)">
+			<i class="iconfont">&#xe699;</i>
+			<!--{$_LANG['赞']}-->喜欢 <span>{$thread_data['goods']}</span>
+		</a>
+	</div>
+	<div class="r post-div"  style="width:33.3333%;text-align: center;">
+		<a >
+			<i class="iconfont">&#xe60e;</i>
+			<!--{$_LANG['查看']}-->查看 <span>{$thread_data['views']}</span>
+		</a>
+	</div>
+</div>
+	
+	{else}
+	<div class="panelf">
+	    	<div class="panelf-heading"><strong>TO：{$thread_data['title']}</strong>
+	        <div class="shijian">{$thread_data['lastdate']}</div>
+	    </div>
+		
+	    <div class="panelf-body">
+	      	<p>{$thread_data['content']}</p>
+	        <div class="shijian2">FROM：{$thread_data['niming']}</div>
+			
+	        
+	    </div>
+		
+                   
+	    </div>
+	{/if}
+	
+	<div class="baod">
+		<ul class="hy-lable-group">
+			{if $forum[$thread_data['fid']]['fid'] != -1}
+	        <li style="word-spacing: -0.35em;">
+	            <a style="background:{php echo forum($forum,$forum[$thread_data['fid']]['fid'],'background');};color:{php echo forum($forum,$forum[$thread_data['fid']]['fid'],'color');};" href="{php echo WWW.URL('forum','',EXP.$forum[$thread_data['fid']]['fid'])}" class="hy-lable hy-lable-zz">{php echo forum($forum,$forum[$thread_data['fid']]['fid'],'name');}</a>
+	        </li>
+	        {/if}
+	        <li>
+	            <a style="background:{php echo forum($forum,$thread_data['fid'],'background');};color:{php echo forum($forum,$thread_data['fid'],'color');};border-radius: 2px;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    box-sizing: border-box;margin-top: 8px;"  href="{php echo WWW.URL('forum','',EXP.$thread_data['fid'])}" class="hy-lable hy-lable-zz">{php echo forum($forum,$thread_data['fid'],'name');}</a>
+	        </li>
+	     </ul>
+			
+		</div>
+
+	<div class="hy-box postlist">
+	<!--{hook t_m_thread_index_13}-->
+	<table style="width: 100%;">
+		{foreach $PostList as $k => $v}
+		<!--{hook t_m_thread_index_14}-->
+		<tr>
+			<!--{hook t_m_thread_index_15}-->
+			<td class="user">
+				<a href="{php HYBBS_URL('my',$v['user']);}" class="avatar">
+					<img src="{#WWW}{$v.avatar.c}">
+		        </a>
+			</td>
+			<!--{hook t_m_thread_index_16}-->
+			<td class="content">
+			    <div class="info">
+			    	<h4 class="cl">
+			        <a href="{php HYBBS_URL('my',$v['user']);}" class="info-user">{$v.user}</a>
+					</h4>
+			    	<p class="time"><em># {$k+1}{$_LANG['楼']}</em> {php echo humandate($v['atime'])} 
+			    	{if IS_LOGIN }
+	                    {if $v['uid'] == NOW_UID || NOW_GID == C("ADMIN_GROUP")}
+	                        <!-- 帖子作者 或者 管理员 -->
+	                        <a class="" href="{php HYBBS_URL('post','edit',['id'=>$v['pid']]); }">{$_LANG['编辑']}</a>
+	                    {/if}
+	                    {if $v['uid'] == NOW_UID || NOW_GID == C("ADMIN_GROUP") || is_forumg($forum,NOW_UID,$thread_data['fid'])}
+	                        <!-- 作者 与 管理员 判断 -->
+	                        <a href="javascript:void(0);" class="" onclick="del_thread({$v.pid},'post')" >{$_LANG['删除帖子']}</a>
+	                    {/if}
+	                    
+	                {/if}
+	                </p> 
+
+			    </div>
+  				<div class="ce1">
+  				<!--{hook t_m_post_content_top}-->
+              		{$v.content}
+              	<!--{hook t_m_post_content_bottom}-->
+				</div>
+    
+			</td>
+			<!--{hook t_m_thread_index_17}-->
+		</tr>
+		<!--{hook t_m_thread_index_18}-->
+		{/foreach}
+		<!--{hook t_m_thread_index_19}-->
+	</table>
+	<!--{hook t_m_thread_index_20}-->
+	</div>
+	
+	<div class="hy-box hy-bo-t" style="padding:10px;margin-bottom: 70px;">
+	<!--{hook t_m_thread_index_page_top}-->
+		<a href="{if $pageid==1}javascript:void(0);{else}{php echo WWW.URL('thread',$thread_data['id'],EXP . ($pageid-1));}{php echo X("get.order")?"?order=desc":'';}{/if}" class="hy-btn hy-btn-danger l {if $pageid==1}disabled{/if}">{$_LANG['上一页']}</a>
+		<!--{hook t_m_thread_index_21}-->
+		<a href="{if $pageid==$page_count}javascript:void(0);{else}{php echo WWW.URL('thread',$thread_data['id'],EXP . ($pageid+1));}{php echo X("get.order")?"?order=desc":'';}{/if}" class="hy-btn hy-btn-danger r {if $pageid==$page_count}disabled{/if}">{$_LANG['下一页']}</a>
+		<div style="clear: both;"></div>
+	<!--{hook t_m_thread_index_page_bottom}-->
+	</div>
+
+	
+	
+</div>
+</section>
+
+	<div class="hy-fix-b" style="background: rgba(252, 252, 252, 0);width:100%;padding:10px;text-align: center;">
+<!--{hook t_m_thread_index_22}-->
+	<button type="button" onclick="open_post_box(this)" class="hy-btn hy-btn-danger hy-btn-outlined" style="margin-bottom: 10px;border-radius: 15px;width:40%;    height: 30px;color: #ffffff;box-shadow: 0 1px 5px rgba(48, 208, 223, 0.63);background-color: #30D0DF;">{$_LANG['评论']}</button>
+	<!--{hook t_m_thread_index_23}-->
+		<!--{hook t_m_thread_index_24}-->
+		<!--{hook t_m_thread_index_25}-->
+	<!--{hook t_m_thread_index_26}-->
+	<!--{hook t_m_thread_index_27}-->
+	<!--{hook t_m_thread_index_28}-->
+</div>
+  
+<div class="post-box  hy-bo-t">
+	<!--{hook t_m_post_editer_top}-->
+        {if IS_LOGIN}
+            <!--{hook t_m_thread_index}-->
+        {else}
+            <a class="hy-btn hy-btn-block" href="{#WWW}user{#EXP}login">{$_LANG['登陆后才可发表内容']}</a>
+        {/if}
+      <!--{hook t_m_post_editer_bottom}-->
+</div>
+
+
+
+
+{include f}

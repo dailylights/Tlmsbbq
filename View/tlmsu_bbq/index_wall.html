@@ -1,0 +1,214 @@
+
+
+<html>
+<head>
+		<title>表白墙</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script src="style/js/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="style/css/wall_style.css" />
+		<link rel="shortcut icon" href="style/img/favicon.ico" />
+    <script src="{#WWW}public/js/jquery.min.js"></script>
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
+	     
+		 
+	</head>
+	<body > 
+	
+			<script type="text/javascript">
+			function validate_required(field,alerttxt)
+			{
+			    with (field)
+			    {
+			      if (value==null||value==" ")
+			        {alert(alerttxt);return false}
+			      else {return true}
+			    }
+			}
+			function validate_form(thisform)
+			{
+			with (thisform)
+			{
+			    if (validate_required(content,"请填写表白内容")==false)
+			    {content.focus();return false}
+			}
+			with (thisform)
+			{
+			    if (validate_required(realname,"请填写昵称")==false)
+			    {realname.focus();return false}
+			}
+			with (thisform)
+			{
+			    if (validate_required(towho,"请填写表白对象")==false)
+			    {towho.focus();return false}
+			}
+			}
+		</script>
+		<style>
+.panel-heading {
+    padding: 0;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #C491CE;
+    border-color: #C491CE;
+}
+.alert-warning {
+    color: #FCFCFC;
+    background-color: #CCA4D4;
+    border-color: #FCFCFC;
+}
+.btnfl{
+
+	    color: #fff;
+    background-color:rgb(204, 164, 212);
+    border-color:rgba(255, 255, 255, 0.45);
+        padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+   margin:  -10px 0px 10px 0px;
+   width: 100%;
+}
+</style>
+<?php
+$TLinc= get_plugin_inc('TL_inc');
+?>
+	<div class="bodydiv" style="margin-top: 10px;">
+
+
+		<div class="container-fluid">
+			<div class="panel panel-info">
+				<div class="panel-heading" style="padding: 0;" align="center">
+					<img src="{$TLinc[5]}" width="100%">
+				</div>
+				<div class="panel-body">
+					
+						<div class="alert alert-warning" role="alert">
+							<strong>使用说明：</strong></br>
+							<span class="glyphicon glyphicon-ok-sign"></span>
+							昵称部分请凭个人意愿填写真实姓名或者昵称</br>
+							<span class="glyphicon glyphicon-ok-sign"></span>
+							表白对象建议加上对方的专业班级</br>
+							<span class="glyphicon glyphicon-ok-sign"></span>
+							为防止刷屏，每隔5分钟可以发布一次消息
+						</div>
+						
+						<input name="from" value="call" style="display: none;">
+            
+                        <select id="forum" type="text" class="btnfl">
+		                            <option value="-1">请选择校区</option>
+		                            {if version_compare(HYBBS_V,'1.5.1','<')}
+		                          
+		                          {foreach $forum as $v}
+		                          <option value="{$v['id']}" {if X('get.fid') == $v['id']}selected{/if}>{$v['name']}</option>
+		                          {/foreach}
+		                          {else}
+		                            <?php 
+		                            $forum_group = cache('forum_group');
+		                            if(empty($forum_group) || DEBUG){
+		                              $forum_group = S("Forum_group")->select('*');
+		                              cache('forum_group',$forum_group);
+		                            }
+		                            ?>
+
+		                            {foreach $forum_group as $v}
+		                            <optgroup label="{$v.name}">
+		                              {foreach $forum as $vv}
+		                                {if $vv['fgid'] == $v['id']}
+		                                  <option value="{$vv['id']}" {if X('get.fid') == $vv['id']}selected{/if}>{$vv.name}</option>
+		                                {/if}
+		                              {/foreach}
+		                            </optgroup>
+		                            {/foreach}
+		                            {foreach $forum as $v}
+		                                <?php $has = false; ?>
+		                                {foreach $forum_group as $vv}
+		                                    
+		                                    {if $v['fgid'] == $vv['id']}
+		                                        <?php $has = true;break; ?>
+		                                    {/if}
+		                                    
+		                                {/foreach}
+		                                {if !$has}
+		                                  <option value="{$v['id']}" {if X('get.fid') == $v['id']}selected{/if}>{$v.name}</option>
+		                                {/if}
+		                            {/foreach}
+		                          {/if}
+		                          </select>
+
+								<!--    <div  class="alert alert-warning">你的性别？（不选表白以默认主题显示）<br /><br />
+		                           <input id="xb1" type="radio"  />男生 
+		                
+		                           <input id="xb2" type="radio"  />女生			   
+								   </div> -->
+								<input id="realname" class="form-control" placeholder="昵称..." required="" autofocus="autofocus"  maxlength="20"></br>
+								<input id="towho" class="form-control" placeholder="送给..." required="" autofocus="" maxlength="20"></br>
+								<textarea class="form-control" id="content" placeholder="留言内容（不超过500字）"   rows="3" onkeyup='value=value.substr(0,500);this.nextSibling.innerHTML=value.length+"/140";'></textarea></br>
+								<button  class="btn btn-primary btn-lg btn-block" TYPE="submit" id="post112"  />发布表白 </button>
+                        <script type="text/javascript">
+	                        
+                          $(function(){
+
+                          	var xb=0;
+	                    	$("#xb1").click(function(){ xb=1;   });
+                            $("#xb2").click(function(){ xb=2;   });
+                        	  
+                       
+    
+                          $("#post112").click(function(){
+                      		
+
+				                              console.log('发布');
+				                              var _obj = $(this);
+				                              _obj.attr('disabled','disabled');
+				                              
+				                               
+
+				                              var realname = $("#realname").val();
+				                              var forum = $("#forum").val();
+				                              var towho = $("#towho").val();
+				                              var content = $("#content").val();
+				                              if (realname=="" || forum=="" || towho=="" || content==-1) {
+				                              	_obj.text("好漏填什么了哦~~~");
+				                              	window.location.reload(); 
+				                              }
+
+				                              else {
+				                            
+				                             
+								                              $.ajax({
+								                                      url: '<?php echo WWW.URL('index','post','');?>',
+								                                      type:"POST",
+								                                      cache: false,
+								                                      data:{
+								                                
+								                                              realname:realname,
+								                                              forum:forum,
+								                                              towho:towho,
+								                                              content:content,
+								                                              xb:xb,
+								                                   
+								                                              
+								                                           },
+								                                              dataType: 'json'
+								                              })
+								                              _obj.text("发布成功！");
+								                              window.location.href='<?php echo WWW.URL('index','',''); ?>';
+				                                   }
+                          })
+                      });
+                      </script>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+    
+	</body>
+</html>

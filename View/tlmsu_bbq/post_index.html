@@ -1,0 +1,38 @@
+
+{include h}
+{include post_header}
+
+
+<section class="body">
+	
+	<!--{hook t_m_post_index_1}-->
+	<!--{hook t_m_post_index}-->
+	
+</section>
+<!--{hook t_m_post_index_2}-->
+<style type="text/css">
+	.body{
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+	}
+</style>
+<!--{hook t_m_post_index_3}-->
+<script type="text/javascript">
+	document.removeEventListener('touchmove', touchmove_handler, false);
+	
+	
+</script>
+<div id="nativeShare"></div>
+    <script>
+	var thisurl=window.location.href;
+        var config = {
+            url:{thisurl},
+            title:'111',
+            desc:'222',
+            img:'http://www.wangjunfeng.com/img/face.jpg',
+            img_title:'33',
+            
+        };
+        var share_obj = new nativeShare('nativeShare',config);
+    </script>
+{include f}

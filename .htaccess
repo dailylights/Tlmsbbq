@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+  RewriteRule View.*\.(html)$ http://127.0.0.1/ [R,NC,L] 
+  	
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php?s=$1 [QSA,PT,L]
+</IfModule>

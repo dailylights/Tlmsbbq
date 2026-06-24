@@ -1,0 +1,92 @@
+/*
+ * 开发者昵称：牵挂丶
+ * 开发者ＱＱ：1143099512
+ * 版权信息：翼创传媒工作室（www.sdyccm.cn）
+ */
+
+body{
+	margin: 0px;
+	    background-color: rgb(237, 237, 237);
+	background-position: top;
+	    color: rgb(136, 73, 73);
+	background-attachment: fixed;
+}
+a{
+	text-decoration:none;
+}
+a:link{
+	text-decoration:none;   /* 指正常的未被访问过的链接*/
+}
+a:visited{
+	text-decoration:none; /*指已经访问过的链接*/
+}
+a:hover{
+	text-decoration:none;/*指鼠标在链接*/
+}
+a:active{
+	text-decoration:none;/* 指正在点的链接*/ 
+}
+.bodydiv{
+	filter:alpha(opacity=80);
+    -moz-opacity:0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+.top{
+	text-align: center;
+	color: #F30;
+}
+.shijian{
+	font-size: small;
+	float: right;
+}
+.shijian2{
+	float: right;
+	color: #999;
+}
+.headder{
+	font-weight: 300;
+	margin-bottom: 35px;
+	color: #fddd87;
+	font-size: 55px;
+}
+.jumbotron h1{
+	margin-top: 0px;
+	text-align: center;
+	color: #FFF !important;
+}
+.jumbotron p{
+	text-align: center;
+	color: #FFF;
+}
+.jumbotron{
+	background-color: rgba(236, 187, 212, 0.54) !important;
+	height: 250px;
+}
+.fanye{
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: -1px;
+	line-height: 1.42857143;
+	color: #428bca;
+	text-decoration: none;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 10px 16px;
+	font-size: 18px;
+}
+@media only screen and (max-width: 767px) {
+	.jumbotron{
+		background-color: #FF5AAD !important;
+		height: 200px;
+	}
+	.pagination li{
+		text-align: center;
+	}
+	.pagination li a{
+	width: 20%;
+	height: 46px;
+	font-size: 12px;
+	}
+}

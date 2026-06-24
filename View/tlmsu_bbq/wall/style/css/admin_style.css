@@ -1,0 +1,148 @@
+/*
+ * 开发者昵称：牵挂丶
+ * 开发者ＱＱ：1143099512
+ * 版权信息：翼创传媒工作室（www.sdyccm.cn）
+ */
+
+a{
+	text-decoration:none;
+	color: #FFFFFF;
+}
+a:link{
+	text-decoration:none;   /* 指正常的未被访问过的链接*/
+	color: #FFFFFF;
+}
+a:visited{
+	text-decoration:none; /*指已经访问过的链接*/
+	color: #FFFFFF;
+}
+a:hover{
+	text-decoration:none;/*指鼠标在链接*/
+	color: #FFFFFF;
+}
+a:active{
+	text-decoration:none;/* 指正在点的链接*/ 
+	color: #FFFFFF;
+}
+body{
+	margin: 0px;
+	background: url(../img/admin_bg.jpg);
+	background-position: top;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+.bodydiv{
+	filter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+}
+.login-top{
+	position: absolute;
+	height: 55px;
+	width: 100%;
+	top: 0px;
+	color: #FFFFFF;
+	text-align: center;
+    font-size: 48px;
+	font-family: 方正舒体;
+}
+.login-top p{
+	margin-top: -8px;
+}
+.login-box{
+	width: 300px;
+	height: 250px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -150px;
+	margin-left: -150px;
+}
+.login-box-top{
+	width: 100%;
+	height: 55px;
+	text-align: center;
+	font-size: 36px;
+	font-family: 方正舒体;
+	background-color: #778899;
+    border-radius: 10px 10px 0 0;
+}
+.login-box-center{
+	width: 100%;
+	height: 170px;
+	background-color: #C0C0C0;
+}
+.login-box-bottom{
+	width: 100%;
+	height: 25px;
+	background-color: #778899;
+    border-radius: 0 0 10px 10px;
+    text-align: right;
+}
+.login-box-bottom p{
+	margin-right: 10px;
+}
+.formdiv{
+	width: 80%;
+}
+.formdiv .btn{
+	width: 100%;
+}
+.form-control{
+
+}
+footer{
+	position: absolute;
+	height: 30px;
+	width: 100%;
+	bottom: 0px;
+	color: #FFFFFF;
+	text-align: center;
+}
+footer p{
+	margin-top: 5px;
+}
+@media only screen and (max-width: 500px) {
+	.login-top{
+		font-size: 32px;
+	}
+	.login-top p{
+	margin-top: 4px;
+	}
+	table{
+		font-size: 12px;
+	}
+}
+/*登录页结束*/
+li:hover .dropdown-menu {
+	display: block;
+}
+.alert{
+	filter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    -khtml-opacity: 0.7;
+    opacity: 0.7;
+}
+.alert strong{
+	color: #8a6d3b;
+}
+.alert strong a{
+	color: #8a6d3b;
+}
+.footer{
+	height: 30px;
+	width: 100%;
+	color: #FFFFFF;
+	text-align: center;
+	filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    position: relative;
+    top: 10px;
+}
+.footer p{
+	position: relative;
+	top: 5px;
+}

@@ -1,0 +1,173 @@
+{include h}
+<style type="text/css"> 
+img.logof {
+    max-width: 100%;
+    padding: 20px 10px;
+    width: 128px;
+    height: 68px;
+    margin: 0 auto;
+    display: block;
+	margin-top: 40px;
+	}
+	.rebtn {
+    color: #667d99;
+    background: #FFFFFF;
+    outline: none;
+    right: 10px;
+    left: 10px;
+    position: absolute;
+    top: 110px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    border-top-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+span.dengl {
+    font-size: 25px;
+    text-align: center;
+    padding: 20px 10px;
+    margin: -20px 10px;
+    display: block;
+    color: #555;
+}
+.fbar {
+    background: none;
+    border-top: 0;
+    font-size: 14px;
+    padding-top: 0;
+    padding-bottom: 0;
+    line-height: 35px;
+    text-align: center;
+    font-size: small;
+}
+.body {
+    padding: 50px 0;
+    background-color: #FFFFFF;
+}
+.hy-btn-danger {
+    color: #FFFFFF;
+    border: 1px solid #30D0DF !important;
+    background-color: #30D0DF;
+}
+</style> 
+<a href="{#WWW}">
+				<img class="logof" src="{#WWW}View/Tlmsu/logo.png" ><span class="dengl">一个账号，畅想提拉米苏所有服务！</span>
+		    </a> 
+<section class="body" id="user_body">
+<div style="padding: 10px 0;background-color: #f7f7f7;margin: 0px 40px;box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);border-radius: 2px;">	  
+    <form id="user-login-form" method="post" onsubmit="return user_login()">
+        <div class="hy-box" style="margin-top:20px"> 
+        <!--{hook t_m_user_login_1}-->
+	    <div class="hy-input-box">
+	        <input type="text" name="user" placeholder="{$_LANG['请输入用户名']}">
+	    </div>
+        <!--{hook t_m_user_login_2}-->
+	    <div class="hy-input-box">
+	        <input type="password" name="pass" placeholder="{$_LANG['请输入密码']}">
+	    </div>
+        <!--{hook t_m_user_login_3}-->
+        </div>
+        <!--{hook t_m_user_login_33}-->
+    	<div style="padding:10px;    text-align: center;">
+    		<button id="login" type="submit" class="hy-btn hy-btn-danger hy-btn-block" style="padding: 8px 0;">{$_LANG['登录']}</button>
+    		<a href="{#WWW}user{#EXP}add"  ajax="true" pos="right" rgb="#f1f4f9"  type="button" class="hy-btn hy-btn-link" style="color: #5184BC;">
+                {$_LANG['注册新账号']}
+            </a>
+            <a href="{#WWW}user{#EXP}repass"  ajax="true" pos="right" rgb="#f1f4f9" type="button" class="hy-btn hy-btn-link" style="color: #5184BC;">{$_LANG['忘记密码']}?</a>
+            <hr style="
+        border-top: 1px solid #d4d4d4;
+        margin: 10px 0;">
+    {if is_plugin_on('hy_qq_login')}
+            <a href="{#WWW}user{#EXP}qqlogin" class="icon icon-qq" style="
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: inline-block;
+        background: #FFF;
+        padding: 12px 12px 12px 12px;
+        color: #3cf !important;
+        border: solid 1px #DDD;
+                    margin-right: 40px;
+               "><i class="iconfont" style="
+    font-size: 3.6em;
+">&#xe62d;</i></a>
+    {/if}
+    {if is_plugin_on('hy_weibo_login')}
+            <a href="{#WWW}user{#EXP}weibologin" class="icon icon-weibo" style="
+        -moz-border-radius: 50%;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        display: inline-block;
+        font-size: 40px;
+        background: #FFF;
+        padding: 12px 12px 12px 12px;
+        color: #f33 !important;
+        border: solid 1px #DDD;
+    "></a>
+    {/if}
+        <div style="height:40px"></div>
+    	</div>
+    </form>
+</div>
+</section>
+<!--{hook t_m_user_login_js}-->
+<script>
+function user_login(){
+    var postdata = $('#user-login-form').serialize();
+    <!--{hook t_user_login_js_1}-->
+    $.post("{#WWW}user{#EXP}login", postdata,  function(e){
+        <!--{hook t_user_login_js_2}-->
+        if(e.error){
+            if(e.url !='')
+                window.location.href=e.url;
+            else
+                window.location.href="{#WWW}";
+        }else{
+            $.hy.warning(e.info);
+        }
+        <!--{hook t_user_login_js_3}-->
+    },'json');
+    <!--{hook t_user_login_js_4}-->
+    return false;
+}
+</script>
+{if !IS_AJAX}
+<style type="text/css">
+    body{
+        background: #fff;
+    }
+</style>
+{/if}
+<div class="dibu" style="margin-top: -50px;    margin-left: -20px;">
+<div class="fbar"> <div class="_Gs" id="fuserm">    
+				{if !IS_LOGIN}
+				<div class="hy-btn-group">
+					<a href="onclick="url_back()" style="
+    color: darkgrey;
+">返回首页</a>
+					<!--{hook t_m_forum_index_33}-->
+				</div>
+				{else}
+				<a href="{php echo WWW.URL('my',$user['user']);}">{$v.user}</a>
+				{/if}
+			</div>
+ </div>
+ </div>
+ <div class="fbar" style="margin-left: -20px;"> <span class="_nW"> 
+ <div>  <span style="display:inline-block;position:relative"> <a class="_Gs" href="{#WWW}u/admin/op.html" id="fsettl" style="
+    color: darkgrey;
+">设置</a>
+ {if !IS_LOGIN}<a href="{#WWW}user{#EXP}login" class="_Gs" id="_Yvd" style="
+    color: darkgrey;
+">登陆</a>{else}<a class="_Gs" href="{#WWW}user{#EXP}out">退出</a> {/if}
+ <a href="http://wpa.qq.com/msgrd?v=3&uin=1678112882&site=qq&menu=yes" class="_Gs" id="_Yvd" style="
+    color: darkgrey;
+">反馈</a>  </div> 
+ <a class="_Gs" href="http://wpa.qq.com/msgrd?v=3&uin=1678112882&site=qq&menu=yes"style="
+    color: darkgrey;
+">联系客服</a> <a class="_Gs" href="{WWW}"style="
+    color: darkgrey;
+">{$title}</a> 
+ <a class="_Gs" href="http://www.tlmsu.com"style="
+    color: darkgrey;
+">www.tlmsu.com</a> </span> </div> </div>  </div>
+{include f}

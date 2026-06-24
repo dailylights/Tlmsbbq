@@ -1,0 +1,210 @@
+﻿{include h}
+{include index_header}
+<!--{hook t_m_index_index_1}--> 
+<script type="text/javascript">
+          $(".FormControl").change(function(){
+              window.location.href = $(this).val();
+          })
+          </script>
+          <script type="text/javascript">
+    $(function(){
+            $(window).scroll(function(){
+                
+                if(this.scrollY > 100  ){
+                    $(".hy-header").css('background','#30D0DF');
+                    $(".hy-header").addClass('header_shadow');
+                    $(".hy-header-title,.hy-header .icon").css("cssText","color: #fff !important");
+                }else{
+                    $(".hy-header").css('background','rgba(0, 0, 0, 0)');
+                    $(".hy-header").removeClass('header_shadow');
+                    $(".hy-header-title,.hy-header .icon").css("cssText","color: #fff");
+                        
+                }
+                
+            });
+            
+
+        })
+    
+</script>
+<section class="body" id="index_body">
+<div style="position: relative;margin: 10px auto;">
+<!--{hook t_m_index_index_2}--> 
+
+  <!--{hook t_m_index_index_3}--> 
+	
+  <!--{hook t_m_index_index_6}--> 
+<div class="jumbotron" >
+		    
+		    <p>思念的人 想说的话 这里告诉ta</p>
+		    <p><a class="btn btn-primary btn-lg" role="button" href="{#WWW}index/wall">我要表白</a></p>
+	
+	    </div>
+		<html>
+ <head></head>
+ <body>
+  <nav class="profile-nav"> 
+   <button class="item" > <a href="{#WWW}forum" class="txt">校园</a><!--<span class="num">7851</span>-->  </button> 
+   <button class="item" > <span class="txt">{hook hy_bbqnrindex}</span><!--<span class="num">7851</span>--> </button> 
+   <button class="item" > <a class="txt" href="{#WWW}" {if isset($_GET['HY_URL'][0])}{if $_GET['HY_URL'][0] != 'btime'}selected{/if}{/if}>{$_LANG['最新主题']}</a><!--<span class="num">7851</span>--> </button> 
+   <button class="item" > <a class="txt" href="{php echo WWW.URL('btime','');}" {if isset($_GET['HY_URL'][0])}{if $_GET['HY_URL'][0] == 'btime'}selected{/if}{/if}><!--{$_LANG['最新回复']}-->最新表白</a><!--<span class="num">7851</span>--> </button> 
+  </nav>
+ </body>
+</html>
+  <!--{hook t_m_index_index_7}--> 
+  <html>
+ <head></head>
+ <body>
+  <div class="profile-apps">
+   <ul class="ui-list-view">
+    <li role="button" data-hook="mine-visitor" global-hot="main.entervisitorlist.{userTitle}">
+     <div class="rows">
+      <div class="col-l">
+       <i class="i-visitor"></i>
+      </div>
+      <div class="col-m">
+	  <span class="badgebb">{$hy_count.user}</span> 人加入了芜湖奇瑞技工学校墙表白墙
+      </div>
+      <div class="col-r"></div>
+     </div></li>
+    <li role="button" data-hook="mine-gift" data-params="" data-ping="gift.entry">
+     <div class="rows">
+      <div class="col-l">
+       <i class="i-gift"></i>
+      </div>
+      <div class="col-m">
+       已经有<span class="badgebb">{$hy_count.thread}</span>条主题被发布
+      </div>
+      <div class="col-r"></div>
+     </div></li>
+    <li role="button" data-hook="global-link" data-params="#friend?res_uin=1678112882" global-hot="main.enterfriendlist">
+   
+     
+ 
+     <div class="rows">
+      <div class="col-l">
+       <i class="i-recent"></i>
+      </div>
+      <div class="col-m">
+       注：发布后没有显示请等待一分钟数据缓存
+      </div>
+     </div></li>
+   </ul>
+  </div>
+ </body>
+</html>
+  <span class="Select">
+        <script type="text/javascript">
+        $(".FormControl").change(function(){
+            window.location.href = $(this).val();
+        })
+        </script>
+        <!--{hook t_m_index_index_5}--> 
+
+	</span>
+	<!--{hook t_m_index_index_thread_list_top}--> 
+	{foreach $top_list as $v}
+	{include thread_lit}
+	{/foreach}
+<!--ajax start--><list id="index-list">
+<!-- 页面置顶 -->
+
+
+
+    
+    </div>  
+    
+  
+</div>
+<!-- 页面置顶 -->
+	{foreach $thread_list as $v}
+	{include thread_list}
+	{/foreach}
+	
+</list><!--ajax end-->
+ 
+	<!--{hook t_m_index_index_thread_list_bottom}-->
+	
+  <div class="hy-box hy-bo-t" style="padding:10px;text-align: center;">
+    <a href="{if $pageid==1}javascript:void(0);{else}{php echo WWW.URL($type,$pageid-1);}{/if}" class="hy-btn hy-btn-blu1 l {if $pageid==1}disabled{/if}">{$_LANG['上一页']}</a>
+    <span class="Select" style="    margin: 0 auto;">
+    <?php $tmp = ($hy_count['thread']%$conf['homelist']) ?(intval($hy_count['thread']/$conf['homelist'])+1) : intval($hy_count['thread']/$conf['homelist']) ; ?>
+      <select class="Select-input FormControl">
+        {for $i=($pageid-5 < 1) ? 1 : $pageid -5; $i< (($pageid + 5 > $tmp) ? $tmp+1 : $pageid + 5) ; $i++}
+          <option value="{php echo WWW.URL($type,$i);}" {if $pageid == $i}selected{/if}>第 {$i} 页</option>
+
+        {/for}
+      </select>
+          <script type="text/javascript">
+          $(".FormControl").change(function(){
+              window.location.href = $(this).val();
+          })
+          </script>
+    </span>
+    <a href="{if $pageid==$page_count}javascript:void(0);{else}{php echo WWW.URL($type,$pageid+1);}{/if}" class="hy-btn hy-btn-blu1 r {if $pageid==$page_count}disabled{/if}">{$_LANG['下一页']}</a>
+    <div style="clear: both;"></div>
+  </div>
+
+</div>
+<a class="icon icon-pencil2" href="{#WWW}post" style="no-repeat center 50%;position: fixed;right: 20px;bottom: 60px;width: 35px;height: 35px;padding: 7px;text-align: center;color: rgb(255, 255, 255);border-radius: 1px;opacity: 0.8;text-decoration: none;display: block;background-color: #30D0DF;font-size: 20px;"></a>
+<a href="#top" style="background: rgb(255, 156, 11) url(//rs-assets.b0.upaiyun.com/assets/top-arrow-3037d2ab96a78f9d865a59db615a2b03.svg) no-repeat center 50%;position: fixed;right: 20px;bottom: 20px;width: 35px;height: 35px;padding: 7px;text-align: center;color: rgb(255, 255, 255);border-radius: 1px;opacity: 0.8;text-decoration: none;display: block;background-color: #30D0DF;font-size: 20px;"></a>
+</section>
+<div style="    padding: 2em 0;
+    text-align: center;
+    line-height: 19px;
+    color: rgba(148, 148, 148, 0.9);">
+<span class="beian" style="margin-left:0">
+<a target="_blank" style="color: #9D9D9D;" href="http://bbq.igelou.com/">
+  Powered by bbq.igelou.com
+</a>
+  </span><br>
+  <span class="beian">芜湖奇瑞技工学校墙表白墙 © 2017 . </span>
+  <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=3e89c7f7f3879bf0fc0dd23488af79ca93d32cfed34e9dd41ad25839ccb344d8"" style="
+    color: #9D9D9D;>
+"><br>
+<span class="kf">点击加群:618951779<a style="display:block;"  ><img style="width:auto" border="0" src="{#WWW}View/Tlmsu/img/qqun.png" alt="HY表白墙模板" title="HY表白墙模板"></a><span></span></span></a>
+</div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <style>
+  dt {
+    margin-top: 20px;
+}
+  dl.font {
+    bottom: 0px;
+    width: 100%;
+}
+.font{
+ text-align: center;
+ color: #FFF;
+   background-color:#FF80AB;
+        line-height:25px;
+        margin-top: -35px;
+ }
+
+ .debug {
+    font-size: 16px;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    display: block;
+    color: #FFFFFF;
+    padding: 0 8px;
+    font-weight: bold;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+    background-color: #6E185F;
+    bottom: 5px;
+}
+       </style>
+        </head>
+
+</html>
+<!--{hook t_m_index_index_lt}-->
+
+{include f}

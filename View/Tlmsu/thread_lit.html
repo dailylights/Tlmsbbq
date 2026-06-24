@@ -1,0 +1,40 @@
+
+<div class="yopb" style="
+
+ height: 41px;
+    background-color: white;
+    list-style: disc outside none;
+    font-size: 15px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 10px;
+    padding-right: 20px;
+">
+
+    <div class="thread">
+        
+        <a href="{php echo WWW.URL('my',$v['user']);}" class="avatar">
+                                    <span class="badge badge-blue" style="
+    font-size: 12px;
+    width: 25px;
+    height: 17px;
+        line-height: 17px;
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    position: absolute;
+    right: -4px;
+    top: 0px;
+">顶</span>      </a>
+        
+    </div>
+            <a href="{php echo WWW.URL('thread','',$v['tid']);}"><span class="userp">&nbsp; {if $v['biaobai']!=1}{$v.summary}{else}{$v.content}~~~TO：{$v.title}{/if}</span>
+            </a>
+</div>
+
+
+
+

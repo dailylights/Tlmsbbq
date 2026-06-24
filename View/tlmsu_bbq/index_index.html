@@ -1,0 +1,261 @@
+﻿{if get_plugin_install_state("TL_inc")}
+
+<?php
+
+$TLinc= get_plugin_inc('TL_inc');
+
+?>
+
+
+
+
+
+{include h}
+
+
+
+{include index_header}
+
+<!--{hook t_m_index_index_1}--> 
+
+<section class="body" id="index_body">
+
+<div style="padding-bottom: 5px;position: relative;margin: 10px auto;">
+
+<!--{hook t_m_index_index_2}--> 
+
+
+
+  <!--{hook t_m_index_index_3}--> 
+
+	
+
+  <!--{hook t_m_index_index_6}--> 
+
+<div class="jumbotron">
+
+		    
+
+		    <p>{$TLinc[1]}</p>
+
+		    <p><a class="btn btn-primary btn-lg" role="button" href="{#WWW}index/wall">{$TLinc[2]}</a></p>
+
+	
+
+	    </div>
+
+  <!--{hook t_m_index_index_7}--> 
+
+<div class="alert alert-success" role="alert">
+
+
+
+			 <span style="    font-size: 18px;
+
+    color: #777;">{$hy_count.user}</span>   人加入了德清校区表白墙<br>
+
+			 已经有<span class="badgebb">{$hy_count.thread}</span>条主题被发布<br>
+
+             <br> 注：表白后没有显示请等待一分钟数据缓存<br>
+
+
+
+
+
+      
+
+        <!-- <div  style="background-color: rgba(234, 212, 224, 0.33);
+
+    border-color: rgba(255, 255, 255, 0.27);
+
+    color:rgba(255, 255, 255, 0.57);" class="app1">
+
+    <a href="http://www.521.igelou.com/表白墙.apk"> <img src="/hyui/APP.png"></a></div> -->
+
+
+
+
+
+               
+
+					 <div class="rebtn bor" style="    top: 117px;
+
+    background-color: rgba(234, 212, 224, 0.33);
+
+    border-color: rgba(255, 255, 255, 0.27);
+
+    color:rgba(255, 255, 255, 0.57);" >
+
+    <form action="{#WWW}search" method="get">
+
+    <input type="text" name="key" placeholder="回车键触发搜索"  maxlength="8">
+
+    </form>
+
+    <button class="icon-search" onclick="$('.rebtn').toggleClass('active')"></button>
+
+    <!--{hook t_m_forum_thread_8}-->
+
+  </div>
+
+	    </div>
+
+  
+
+	<!--{hook t_m_index_index_thread_list_top}--> 
+
+	{foreach $top_list as $v}
+
+	{include thread_list}
+
+	{/foreach}
+
+<list id="index-list">
+
+	{foreach $thread_list as $v}
+
+	{include thread_list}
+
+	{/foreach}
+
+	
+
+</list>
+
+ 
+
+	<!--{hook t_m_index_index_thread_list_bottom}-->
+
+	
+
+  <div class="hy-box hy-bo-t" style="padding:10px;text-align: center;">
+
+    <a href="{if $pageid==1}javascript:void(0);{else}{php echo WWW.URL($type,$pageid-1);}{/if}" class="hy-btn hy-btn-blu1 l {if $pageid==1}disabled{/if}">{$_LANG['上一页']}</a>
+
+    <span class="Select" style="    margin: 0 auto;">
+
+    <?php $tmp = ($hy_count['thread']%$conf['homelist']) ?(intval($hy_count['thread']/$conf['homelist'])+1) : intval($hy_count['thread']/$conf['homelist']) ; ?>
+
+      <select class="Select-input FormControl">
+
+        {for $i=($pageid-5 < 1) ? 1 : $pageid -5; $i< (($pageid + 5 > $tmp) ? $tmp+1 : $pageid + 5) ; $i++}
+
+          <option value="{php echo WWW.URL($type,$i);}" {if $pageid == $i}selected{/if}>第 {$i} 页</option>
+
+
+
+        {/for}
+
+      </select>
+
+          <script type="text/javascript">
+
+          $(".FormControl").change(function(){
+
+              window.location.href = $(this).val();
+
+          })
+
+          </script>
+
+          
+
+      <img src="{#WWW}View/hy_moblie/sort.png" class="Select-caret">
+
+    </span>
+
+    <a href="{if $pageid==$page_count}javascript:void(0);{else}{php echo WWW.URL($type,$pageid+1);}{/if}" class="hy-btn hy-btn-blu1 r {if $pageid==$page_count}disabled{/if}">{$_LANG['下一页']}</a>
+
+    <div style="clear: both;"></div>
+
+  </div>
+
+
+
+</div>
+
+
+
+</section>
+
+<div style="    padding: 2em 0;
+
+    margin-top: -60px;
+
+    text-align: center;
+
+    line-height: 19px;
+
+    color: rgba(148, 148, 148, 0.9);">
+
+
+
+	 </span><br>
+
+	<span class="beian">校区表白墙 © 2017 . <br> QQ交流群（获取更新与帮助）：618951779</span>
+
+
+
+</div>
+
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=616904413&auto=0&height=430"></iframe>
+
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+
+	<style>
+
+	dt {
+
+    margin-top: 20px;
+
+}
+
+	dl.font {
+
+    bottom: 0px;
+
+    width: 100%;
+
+}
+
+.font{
+
+ text-align: center;
+
+ color: #FFF;
+
+   background-color:#FF80AB;
+
+   			line-height:25px;
+
+   			margin-top: -35px;
+
+ }
+
+			 </style>
+
+			 	</head>
+
+		
+
+</html>
+
+
+
+
+
+{include f}
+
+
+
+{else}
+
+<p>请先进入后台安装 TL_inc 插件<br><br>   <a href="http://localhost/admin">进入后台</a>  </p>
+
+{/if}

@@ -1,0 +1,53 @@
+
+       <?php
+$bq_inc= get_plugin_inc('bq');
+
+?>
+<style>
+.bq {
+    color: #fff;
+    border: 1px solid #dd524d !important;
+    background-color: #dd524d;
+     padding: 0 3px;
+     margin-right: 5px;
+    border-radius: 4px;
+    display: block;
+    float: left;
+    margin-top: 5px;
+}
+.bq1{
+	 color: #fff;
+    border: 1px solid #dd524d !important;
+    background-color: #dd524d;
+     padding: 0 3px;
+     border-radius: 4px;
+
+}
+</style>
+
+<div style="margin-left:50px;">标签：<span class="" id="bqid" ></span></br></br>
+<span class="bq" id="1" >{$bq_inc.1} </span>
+<span class="bq" id="2" >{$bq_inc.2} </span>
+<span class="bq" id="3" >{$bq_inc.3} </span>
+<span class="bq" id="4" >{$bq_inc.4} </span>
+<span class="bq" id="5" >{$bq_inc.5} </span>
+
+</div>
+<script>
+var t=1;
+      $(".bq").click(function(){
+      if (t){
+      var bqid=this.id;
+      var bqv=this.innerText;
+      document.getElementById("bqid").innerText=bqv;
+      document.getElementById("bqid").className="bq1";
+
+     this.style.display="none";
+      t=0;
+
+     }
+
+    });
+    </script>
+ 
+ 

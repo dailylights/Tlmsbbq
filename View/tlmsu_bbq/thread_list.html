@@ -1,0 +1,231 @@
+﻿ {if $v['biaobai']!=1}
+
+<div class="hy-box" >
+
+<!--{hook t_m_thread_list_1}-->
+
+	<div class="thread">
+
+		<!--{hook t_m_thread_list_2}-->
+
+		<a href="{php echo WWW.URL('my',$v['user']);}" class="avatar">
+
+			{if !$v['top'] && $v['posts'] > 20 && !$v['state']}<span class="icon-fire badge badge-danger"></span>{/if}
+
+			{if $v['state']}<span class="icon-lock badge badge-z"></span>{/if}
+
+			{if $v['top']==2}<span class="icon-thumb-tack badge badge-blue"></span>{elseif $v['top']==1}<span class="icon-thumb-tack badge badge-warning"></span>{/if}
+
+			<img src="{#WWW}{$v.avatar.b}" class="">
+
+		</a>
+
+		<!--{hook t_m_thread_list_3}-->
+
+
+
+                    
+
+		<a class="list-title" href="{php echo WWW.URL('thread','',$v['tid']);}" ajax="true" pos="right">
+
+			<h3>{$v.title}</h3>
+
+		</a>
+
+		<!--{hook t_m_thread_list_4}-->
+
+		<ul class="hy-lable-group">
+
+			{if $forum[$v['fid']]['fid'] != -1}
+
+			<!--{hook t_m_thread_list_5}-->
+
+	        <li style="word-spacing: -0.35em;">
+
+	            <a style="background:{php echo forum($forum,$forum[$v['fid']]['fid'],'background');};color:{php echo forum($forum,$forum[$v['fid']]['fid'],'color');};" iframe="true" ajax="true" href="{php echo WWW.URL('forum','',EXP.$forum[$v['fid']]['fid'])}" class="hy-lable hy-lable-zz">{php echo forum($forum,$forum[$v['fid']]['fid'],'name');}</a>
+
+	        </li>
+
+	        <!--{hook t_m_thread_list_6}-->
+
+	        {/if}
+
+	        <!--{hook t_m_thread_list_7}-->
+
+	        <li>
+
+	            <a style="background:{php echo forum($forum,$v['fid'],'background');};color:{php echo forum($forum,$v['fid'],'color');};border-top-right-radius: 3px;border-bottom-right-radius: 3px;" iframe="true" ajax="true" href="{php echo WWW.URL('forum','',EXP.$v['fid'])}" class="hy-lable hy-lable-zz">{php echo forum($forum,$v['fid'],'name');}</a>
+
+	        </li>
+
+	        <!--{hook t_m_thread_list_8}-->
+
+	        <li class="blt">
+
+	            <span class="icon-reply"></span>
+
+	            {if ACTION_NAME != 'My'}
+
+	            {if $v['posts']}
+
+	            <span class="user">{$v.buser}</span>
+
+	            {$_LANG['回复于']}
+
+	            {else}
+
+	            <span class="user">{$v.user}</span>
+
+	            {$_LANG['发表于']}
+
+	            {/if}
+
+	            {else}
+
+	            {$_LANG['发表于']}
+
+	            {/if}
+
+	            <span class="time">{if $v['posts']}{php echo humandate($v['btime']);}{else}{php echo humandate($v['atime']);}{/if}</span>
+
+	        </li>
+
+	        <!--{hook t_m_thread_list_9}-->
+
+			{if $v['img']}
+
+		<?php $tmp = explode(",", trim($v['img'],","));$i=0; ?>
+
+		<div class="{if count($tmp) >= 3}image{else}image1{/if}">
+
+			{foreach $tmp as $vv}
+
+			<span class="tl-image" style="background-image:url('{$vv}')"></span>
+
+			
+
+			{php $i++;}
+
+			{if $i >= 3}
+
+			{php break;}
+
+			{/if}
+
+			{/foreach}
+
+		</div>
+
+		{/if}
+
+		
+
+		<div class="t-ul">
+
+			<ul>
+
+				{hook t_m_thread_list_7}
+
+				<li>
+
+				
+
+		        <a onclick="tp('thread1',{$v.tid},this)">
+
+			   <i class="icon icon-thumbs-o-up"></i>
+
+			    <span>{$v.goods}</span></a>
+
+				
+
+			   </li>
+
+				<li>
+
+				<a onclick="tp('thread2',{$v.tid},this)">
+
+			     <i class="icon icon-thumbs-o-down"></i>
+
+		         <span>{$v.nos}</span>
+
+		        </a>
+
+				
+
+				<li>
+
+					<i class="icon icon-eye " style="
+
+    font-size: 18px;
+
+"></i> {$v.views}
+
+				</li>
+
+			</ul>
+
+		</div>	 
+
+	    </ul>
+
+		<span class="posts" title="" {if ($v['btime']+1800) > NOW_TIME && $v['btime'] != $v['atime']}style="background: #FF80AB;color: #fff;font-weight: bold;"{/if}>{$v.posts}</span>
+
+		<!--{hook t_m_thread_list_10}-->
+
+		
+
+		
+
+	</div>
+
+	<!--{hook t_m_thread_list_11}-->
+
+</div>
+
+   {else}
+
+   <a  href="{php echo WWW.URL('thread','',$v['tid']);}" ajax="true" pos="right">
+
+   <div class="panel panel-info">
+
+	    	<div class="panel-heading"><strong>TO：{$v.title}</strong>
+
+	        <div class="shijian">{$v.lastdate}</div>
+
+	    </div>
+
+		
+
+	    <div class="panel-body">
+
+	      	<p>{$v.content}</p>
+
+			<!-- 表白墙点赞 -->
+
+			<!-- 表白墙点赞 -->
+
+	        <div class="shijian2">{if $v['goods']> 0} <span class="postsbb" style="      border-radius: 10px;  background: rgb(238,195,217);" >{$v.goods}</span>{/if}{if $v['posts']> 0}<span class="postsbb" >{$v.posts}</span>{/if} FROM：{$v.niming}</div>
+
+			
+
+	        
+
+	    </div>
+
+		
+
+		
+
+                   
+
+	    </div>
+
+		</a>
+
+	
+
+		
+
+
+
+   {/if}
